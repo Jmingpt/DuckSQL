@@ -6,15 +6,19 @@ import duckdb
 def run():
     st.set_page_config(
         page_title="Duck SQL",
-        page_icon=None,
+        page_icon="🦆",
         layout="wide",
         initial_sidebar_state="auto"
     )
-    st.title("Duck SQL")
-    query = st.text_area(label="Query")
-    run_columns = st.columns((3, 2, 1))
-    with run_columns[-1]:
+    title_columns = st.columns((3, 2, 1))
+    with title_columns[0]:
+        st.title("🗄️ Duck SQL")
+    with title_columns[-1]:
+        st.text("")
+        st.text("")
         run_button = st.button(label="Run", use_container_width=True)
+
+    query = st.text_area(label="Query")
 
     with st.sidebar:
         uploaded_files = st.file_uploader(
@@ -44,8 +48,8 @@ def run():
                 schema += f"    - {col}\n"
         columns_placeholder.markdown(schema)
 
+        st.divider()
         if query and run_button:
-            print(query)
             result = conn.execute(query).df()
             st.dataframe(
                 data=result,
