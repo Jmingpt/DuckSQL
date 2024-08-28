@@ -3,4 +3,4 @@ numpy==2.1.0
 pandas==2.2.2
 pyarrow==17.0.0
 streamlit==1.38.0
-watchdog==4.0.2
+watchdog==5.0.0
